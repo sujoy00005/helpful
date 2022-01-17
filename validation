@@ -1,0 +1,24 @@
+enum ValidationError : LocalizedError{
+    case emptyPass
+    case emptyEmail
+    
+    var errorDescription : String?{
+        switch self{
+        case .emptyEmail:
+            return "Please enter emails"
+        case .emptyPass:
+            return "Please enter password"
+        }
+        
+    }
+   
+}
+
+struct ValidationServices{
+    func validationUserName(_ text : String?) throws ->String{
+        guard let username = text else {
+            throw ValidationError.emptyEmail
+        }
+        return username
+    }
+}
